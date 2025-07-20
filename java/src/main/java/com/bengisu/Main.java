@@ -31,6 +31,8 @@ public class Main {
 
             //delete
             session.delete(readStudent);
+
+            transaction.commit();
         }
         catch (RuntimeException e)
         {
