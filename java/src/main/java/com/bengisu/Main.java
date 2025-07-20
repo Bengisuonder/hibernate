@@ -17,9 +17,20 @@ public class Main {
         {
             transaction = session.beginTransaction();
 
+            //create
             Student student = new Student("Bengisu", "Önder");
             session.persist(student);
-            transaction.commit();
+
+            //read
+            Student readStudent = session.get(Student.class, student.getId());
+            System.out.println(readStudent);
+
+            //update
+            readStudent.setName("Yeni İsim");
+            session.update(readStudent);
+
+            //delete
+            session.delete(readStudent);
         }
         catch (RuntimeException e)
         {
