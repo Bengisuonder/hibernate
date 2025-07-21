@@ -23,7 +23,7 @@ public class Main {
 
             //read
             Student readStudent = session.get(Student.class, student.getId());
-            System.out.println(readStudent);
+            System.out.println("Okunan Öğrenci: " + readStudent.getName() + " " + readStudent.getLastName());
 
             //update
             readStudent.setName("Yeni İsim");
@@ -34,9 +34,15 @@ public class Main {
 
             transaction.commit();
         }
-        catch (RuntimeException e)
+        catch (Exception e)
         {
-            throw new RuntimeException(e);
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        }
+        finally
+        {
+            // CLOSE SESSION
+            if (session != null) session.close();
         }
     }
 }
