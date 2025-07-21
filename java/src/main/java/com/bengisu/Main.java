@@ -1,5 +1,7 @@
 package com.bengisu;
 
+import com.bengisu.dao.UserDAO;
+import com.bengisu.model.User;
 import com.bengisu.service.StudentService;
 import com.bengisu.model.Student;
 import com.bengisu.util.HibernateUtil;
@@ -48,6 +50,7 @@ public class Main
             if (session != null) session.close();
         }
          */
+        /*
         StudentService service = new StudentService();
 
         // CREATE
@@ -62,5 +65,22 @@ public class Main
 
         // DELETE
         service.deleteStudent(1);
+         */
+        UserDAO userDAO = new UserDAO();
+
+        // CREATE
+        User newUser = new User("Bengisu", "Önder");
+        userDAO.createUser(newUser);
+
+        // READ
+        User fetchedUser = userDAO.getUserById(newUser.getId());
+
+        // UPDATE
+        fetchedUser.setName("Yeni Ad");
+        fetchedUser.setLastName("Yeni Soyad");
+        userDAO.updateUser(fetchedUser);
+
+        // DELETE
+        userDAO.deleteUser(fetchedUser);
     }
 }
