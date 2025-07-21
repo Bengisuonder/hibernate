@@ -29,5 +29,6 @@
 
         <!-- Entities -->
         <mapping class="com.bengisu.model.Student"/>
+        <mapping class="com.bengisu.model.User"/>
     </session-factory>
 </hibernate-configuration>
